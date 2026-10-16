@@ -1,0 +1,319 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>北歐 17 日行程</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;900&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: hero, sticky chips, a checklist band, then one band per stop; each day is a card with time slots, map links and lodging. */
+:root{
+  --bg:#f3f6f7; --surface:#ffffff; --fg:#14262e; --muted:#5c7079; --line:#d5e0e4;
+  --accent:#0f6b63; --accent-soft:#dcefec;
+  --cph:#b4532f; --cph-soft:#f6e4dc;
+  --osl:#7a4a8f; --osl-soft:#ece0f1;
+  --rov:#1f7a8c; --rov-soft:#d9eef2;
+  --saa:#2e7d4f; --saa-soft:#dcefe3;
+  --sto:#8a6710; --sto-soft:#f5ecd0;
+  --fly:#4b5d66; --fly-soft:#e3e9ec;
+  --link:#1d5fa8;
+  --font-display:"Noto Serif TC","Songti TC",serif;
+  --font-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1a20; --surface:#16262e; --fg:#e6eff2; --muted:#93a8b0; --line:#27404b;
+  --accent:#5fd1bf; --accent-soft:#17383a;
+  --cph:#f0976f; --cph-soft:#3a2418;
+  --osl:#c79adb; --osl-soft:#2e1f38;
+  --rov:#6cc7d8; --rov-soft:#15353c;
+  --saa:#7fd6a0; --saa-soft:#183425;
+  --sto:#e3bd55; --sto-soft:#3a3016;
+  --fly:#a5b8c0; --fly-soft:#22343c;
+  --link:#8fbff0;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1a20; --surface:#16262e; --fg:#e6eff2; --muted:#93a8b0; --line:#27404b;
+  --accent:#5fd1bf; --accent-soft:#17383a;
+  --cph:#f0976f; --cph-soft:#3a2418;
+  --osl:#c79adb; --osl-soft:#2e1f38;
+  --rov:#6cc7d8; --rov-soft:#15353c;
+  --saa:#7fd6a0; --saa-soft:#183425;
+  --sto:#e3bd55; --sto-soft:#3a3016;
+  --fly:#a5b8c0; --fly-soft:#22343c;
+  --link:#8fbff0;
+  color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:860px;margin:0 auto}
+a{color:var(--link)}
+header.hero{padding:36px 0 20px}
+.eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--font-display);font-weight:900;font-size:clamp(30px,7vw,48px);line-height:1.15;margin:8px 0 10px;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:60ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin:18px 0 0;padding:0;list-style:none;font-size:14px}
+.facts li{display:flex;gap:6px;align-items:baseline}
+.facts b{font-family:var(--font-mono);font-weight:500;font-size:15px}
+
+nav.route{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);
+  margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:10px max(16px,env(safe-area-inset-left,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+nav.route .wrap{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+nav.route .wrap::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--fg);font:inherit;font-size:13px;
+  padding:6px 12px;border-radius:999px;cursor:pointer;display:flex;gap:6px;align-items:center;white-space:nowrap}
+.chip i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.chip small{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.chip:hover{border-color:var(--c)}
+.chip:focus-visible,.check input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+section.stop,section.prep{margin-top:36px;scroll-margin-top:72px}
+.stop-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;padding-bottom:10px;border-bottom:2px solid var(--c)}
+.stop-head h2{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,5vw,28px);margin:0;color:var(--c)}
+.stop-head .range{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.info{flex-basis:100%;margin:6px 0 0;display:grid;gap:3px;font-size:14px;color:var(--muted)}
+.info div{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px}
+.info dt{font-weight:500}
+.info dd{margin:0;overflow-wrap:anywhere}
+.info b{color:var(--fg);font-weight:500}
+
+.days{display:grid;gap:14px;margin-top:16px}
+article.day{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:grid;grid-template-columns:92px minmax(0,1fr)}
+.date{background:var(--c-soft);color:var(--c);padding:14px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.date .md{font-family:var(--font-mono);font-size:20px;line-height:1.1}
+.date .wd{font-size:13px;font-weight:700}
+.body{padding:14px 16px;min-width:0}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:var(--c);margin:0 0 6px;letter-spacing:.04em}
+.slots{display:grid;gap:6px;margin:0}
+.slot{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px}
+.slot dt{font-size:12px;color:var(--muted);padding-top:3px;font-weight:500}
+.slot dd{margin:0;overflow-wrap:anywhere}
+.places{list-style:none;margin:10px 0 0;padding:10px 0 0;border-top:1px dashed var(--line);display:grid;gap:6px;font-size:14px}
+.places li{display:flex;flex-wrap:wrap;gap:0 8px;align-items:baseline}
+.places a{font-weight:500}
+.places span{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.lodge{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:14px;color:var(--muted);display:flex;gap:6px}
+.lodge b{color:var(--fg);font-weight:500}
+.tip{margin-top:8px;font-size:13px;background:var(--accent-soft);color:var(--fg);padding:6px 10px;border-radius:6px}
+
+/* checklist */
+.prep h2{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,5vw,28px);margin:0;color:var(--accent)}
+.prep-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;padding-bottom:10px;border-bottom:2px solid var(--accent)}
+.prep-head .prog{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px;margin-top:16px}
+.group{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.group h3{font-size:14px;margin:0 0 8px;color:var(--accent);letter-spacing:.04em}
+.check{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;padding:7px 0;border-top:1px solid var(--line);cursor:pointer}
+.check:first-of-type{border-top:0}
+.check input{width:18px;height:18px;margin:4px 0 0;accent-color:var(--accent)}
+.check b{font-weight:500;display:block}
+.check small{display:block;color:var(--muted);font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+.check input:checked ~ div b{text-decoration:line-through;color:var(--muted)}
+
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+
+@media (max-width:480px){
+  article.day{grid-template-columns:1fr}
+  .date{flex-direction:row;justify-content:flex-start;gap:10px;align-items:baseline;padding:8px 16px}
+  .date .md{font-size:17px}
+}
+@media (prefers-reduced-motion:no-preference){.chip{transition:border-color .15s}}
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Denmark · Norway · Finland · Sweden</div>
+    <h1>北歐 17 日行程</h1>
+    <p class="sub">哥本哈根、郵輪、奧斯陸、羅瓦涅米、Saariselkä 追極光，最後到斯德哥爾摩收尾。</p>
+    <ul class="facts">
+      <li><b>10/23 – 11/08</b><span>2026</span></li>
+      <li><b id="cd">—</b><span>天後出發</span></li>
+      <li><b>2</b><span>段飛行 + 1 段郵輪</span></li>
+    </ul>
+  </header>
+</div>
+
+<nav class="route" aria-label="行程快速跳轉"><div class="wrap" id="chips"></div></nav>
+
+<div class="wrap">
+  <section class="prep" id="prep">
+    <div class="prep-head"><h2>行前準備</h2><span class="prog" id="prog"></span></div>
+    <div class="groups" id="groups"></div>
+  </section>
+</div>
+
+<div class="wrap" id="stops"></div>
+
+<div class="wrap">
+  <footer>
+    原始表格：<a href="https://docs.google.com/spreadsheets/d/1qwtvkIbtmCSe20laVmFE6ltvVP1mF6L3ZPvRR0G3KJw/edit?usp=sharing">Google 試算表</a>。時間為各地當地時間，出發前請再確認航班與郵輪班次。地圖連結會在 Google Maps 開啟搜尋結果，請以實際顯示的營業時間為準。勾選狀態只存在這個瀏覽器。
+  </footer>
+</div>
+
+<script>
+const MAP=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
+const LAUNDRY_STO="self service laundry near Odenplan Stockholm";
+const BOOK={cph:"https://reurl.cc/mzjn7M",rov:"https://reurl.cc/qajd3N",sto:"https://reurl.cc/3ylDm8"};
+
+const PREP=[
+ {t:"證件與保險",items:[
+  ["護照","確認護照有身分證統一編號（免簽入境申根區的條件），效期至少涵蓋整趟旅程。另存一份電子檔，紙本影本放在不同包包。"],
+  ["ETIAS 歐盟旅行授權","截至 2026 年 9 月底仍沒有確定實施日，目前不需要申請。出發前一週再看一次官方公告。"],
+  ["旅遊保險","確認涵蓋醫療、班機延誤、行李遺失，以及雪地活動（哈士奇、極光追獵團）。把保單號與 24 小時客服電話截圖存手機。"],
+  ["訂單與憑證","機票、飯店、郵輪、極光團、接駁的確認信存在手機，並另外離線備份。"]
+ ]},
+ {t:"錢與支付",items:[
+  ["歐元現金","只有芬蘭（羅瓦涅米、Saariselkä）用歐元。洗衣房、小店可能需要零錢，帶少量現金即可。"],
+  ["丹麥、挪威、瑞典用本地貨幣","丹麥克朗、挪威克朗、瑞典克朗。多數地方可刷卡，可以不特別換現金。"],
+  ["信用卡","至少帶兩張不同組織的卡，確認海外手續費、已開通海外刷卡與 PIN。"]
+ ]},
+ {t:"網路與 App",items:[
+  ["eSIM","購買前確認方案涵蓋丹麥、挪威、芬蘭、瑞典四國，挪威不在歐盟，部分歐洲方案不含。出發前先安裝，抵達後再開啟。"],
+  ["離線地圖","在 Google Maps 下載哥本哈根、奧斯陸、羅瓦涅米、Saariselkä、斯德哥爾摩區域。"],
+  ["常用 App","航空公司 App、銀行 App、各城市大眾運輸 App，行前先登入。"]
+ ]},
+ {t:"行李與洗衣",items:[
+  ["洗衣計畫","哥本哈根房內有洗衣機。羅瓦涅米在咖啡之家洗（客用自助洗衣房，洗加烘約 15 歐元）。斯德哥爾摩飯店沒有洗衣機，11/06 到市區自助洗衣店。"],
+  ["轉接頭與行動電源","歐洲插座以 C / F 型為主。行動電源放隨身行李。"],
+  ["極地保暖衣物","極光夜與雪地活動需要保暖層。兩段短程飛行（10/29、11/03）先確認行李額度。"]
+ ]},
+ {t:"代辦事項",items:[
+  ["郵輪登船","確認登船碼頭與報到截止時間。10/26 16:30 開船。"],
+  ["線上報到","10/29 OSL → RVN、11/03 IVL → ARN 兩段飛行，開放後線上報到。"],
+  ["預約極光與動物體驗","10/30 極光保證團、10/31 河邊野餐極光、哈士奇或馴鹿、11/01 極光追獵團，確認時間與接送。"],
+  ["Saariselkä 接駁","10/31 巴士抵達後，跟飯店確認接駁到玻璃屋的時間。"],
+  ["羅瓦涅米補給","大件補給在羅瓦涅米買好，Saariselkä 的超市在約 15 分鐘外。"]
+ ]}
+];
+
+const STOPS=[
+ {id:"cph",name:"哥本哈根",c:"--cph",s:"--cph-soft",range:"10/23 – 10/26",
+  stay:"Adina Apartment Hotel Copenhagen",
+  info:[["抵達","機場快鐵到中央車站，建議搭計程車約 10 分鐘。搭地鐵到 Kongens Nytorv 站要走約 8 分鐘石板路。"],["房內","有洗衣機，不含早餐。"],["超市","Netto（約 6–8 分鐘），適合買瓶裝水、零食、奶油酥餅。"]],
+  days:[
+  {d:"10/23",w:"五",a:"桃園機場報到",e:"22:50 台北出發",stay:"機上",note:"前往哥本哈根"},
+  {d:"10/24",w:"六",m:"11:50 抵達 Copenhagen",a:"新港散步 / 飯店 check-in",e:"市區晚餐",stay:"Adina Apartment Hotel Copenhagen",note:"行程開始",
+   p:[["Nyhavn（新港）","Nyhavn, 1051 København K"],["Copenhagen Airport (CPH)","Lufthavnsboulevarden, 2770 Kastrup"]]},
+  {d:"10/25",w:"日",m:"Tivoli Gardens（白天遊園）",a:"園區延伸 / 市區補拍",e:"夜間燈光秀 + 散步",stay:"Adina Apartment Hotel Copenhagen",note:"Tivoli 全日",
+   p:[["Tivoli Gardens","Vesterbrogade 3, 1630 København V"]]},
+  {d:"10/26",w:"一",m:"哥本哈根自由時間",a:"市區散步 / 移動準備",e:"Go Nordic 郵輪前往 Oslo",stay:"郵輪",note:"海上移動旅館",tip:"16:30 開船，18:30 晚餐自助餐。登船碼頭以船票為準。"}
+  ]},
+ {id:"osl",name:"奧斯陸",c:"--osl",s:"--osl-soft",range:"10/27 – 10/29",
+  stay:"Comfort Hotel Xpress Oslo Central Station",
+  info:[["抵達","下郵輪後搭計程車約 5 分鐘。從機場搭快線到中央車站，出站過馬路即到。"],["房內","不含早餐。"],["超市","就在車站建築內，Kiwi / Coop（約 2 分鐘）。"]],
+  days:[
+  {d:"10/27",w:"二",m:"郵輪抵達 Oslo",a:"Munch Museum",e:"新港閒逛，市區晚餐",stay:"Comfort Hotel Xpress Oslo Central Station",note:"挪威 Day 1",tip:"郵輪 10/26 16:30 出發，10/27 10:00 抵達。",
+   p:[["Munch Museum","Edvard Munchs plass 1, 0194 Oslo"],["Aker Brygge（奧斯陸碼頭區）","Aker Brygge, 0250 Oslo"]]},
+  {d:"10/28",w:"三",m:"歌劇院（約 20 分鐘）",a:"Akershus 城堡 / 市區慢旅",e:"晚餐 Fiskeriet Youngstorget",stay:"Comfort Hotel Xpress Oslo Central Station",note:"奧斯陸慢活",tip:"晚餐 18:30 用餐。",
+   p:[["Oslo Opera House","Kirsten Flagstads Plass 1, 0150 Oslo"],["Akershus Fortress","Akershus Festning, 0150 Oslo"],["Fiskeriet Youngstorget","Youngstorget 2B, 0181 Oslo"]]}
+  ]},
+ {id:"rov",name:"羅瓦涅米",c:"--rov",s:"--rov-soft",range:"10/29 – 10/31",
+  stay:"Hostel Café Koti",
+  info:[["抵達","從機場搭計程車或接駁車約 15 分鐘直達門口。"],["房內","三人房，含早餐。客用自助洗衣房，洗加烘約 15 歐元。"],["超市","K-Supermarket（約 3 分鐘），Moomin 商品和芬蘭巧克力很多。"]],
+  days:[
+  {d:"10/29",w:"四",m:"Oslo (OSL) → Rovaniemi (RVN)，搭火車到機場再飛行",a:"入住 / 超市補給",e:"北極圈初體驗",stay:"Hostel Café Koti",note:"進入極圈",
+   p:[["Oslo Airport (OSL)","Edvard Munchs veg, 2061 Gardermoen"],["Rovaniemi Airport (RVN)","Lentokentäntie, 96930 Rovaniemi"]]},
+  {d:"10/30",w:"五",m:"Santa Claus Village",a:"極圈拍照 / café，順便洗衣服",e:"參加極光保證團",stay:"Hostel Café Koti",note:"北極圈 Day",tip:"洗衣：在咖啡之家客用洗衣房，洗加烘約 15 歐元。晚上要出團，建議下午洗完收好。",
+   p:[["Santa Claus Village","Tähtikuja 1, 96930 Rovaniemi"]]}
+  ]},
+ {id:"saa",name:"Saariselkä",c:"--saa",s:"--saa-soft",range:"10/31 – 11/03",
+  stay:"Northern Lights Village Saariselkä",
+  info:[["抵達","從羅瓦涅米搭大巴到薩里山，飯店會提供接駁車到玻璃屋門口。"],["超市","村內唯一大超市 Kuukkeli（約 15 分鐘），大件補給先在羅瓦涅米買。"]],
+  days:[
+  {d:"10/31",w:"六",m:"Rovaniemi → Saariselkä（巴士約 3–4 小時）",a:"入住 + sauna",e:"飯店 river camping 極光活動（河邊野餐看極光）",stay:"Northern Lights Village Saariselkä",note:"極光村開始"},
+  {d:"11/01",w:"日",m:"雪地活動 / 放鬆",a:"哈士奇或馴鹿體驗",e:"極光追獵團",stay:"Northern Lights Village Saariselkä",note:"極光主戰日"},
+  {d:"11/02",w:"一",m:"森林散步 / café",a:"自由休息",e:"玻璃屋等極光",stay:"Northern Lights Village Saariselkä",note:"慢旅日"}
+  ]},
+ {id:"sto",name:"斯德哥爾摩",c:"--sto",s:"--sto-soft",range:"11/03 – 11/07",
+  stay:"ibis Styles Stockholm Odenplan",
+  info:[["房內","含早餐，沒有洗衣機。"],["洗衣","到市區自助洗衣店，見 11/06。"]],
+  days:[
+  {d:"11/03",w:"二",m:"Ivalo (IVL) → Stockholm (ARN)（飛機）",a:"入住 / 地鐵藝術站",e:"Gamla Stan 散步",stay:"ibis Styles Stockholm Odenplan",note:"瑞典開始",
+   p:[["Ivalo Airport (IVL)","Lentokentäntie, 99800 Ivalo"],["Kungsträdgården 地鐵站（藍線藝術站）","Kungsträdgården, 111 47 Stockholm"],["Gamla Stan（Stortorget 廣場）","Stortorget, 111 29 Stockholm"]]},
+  {d:"11/04",w:"三",m:"Vasa Museum",a:"Gamla Stan 老城",e:"Södermalm 夜景",stay:"ibis Styles Stockholm Odenplan",note:"經典日",
+   p:[["Vasa Museum","Galärvarvsvägen 14, 115 21 Stockholm"],["Monteliusvägen 觀景步道（Södermalm）","Monteliusvägen, 118 20 Stockholm"]]},
+  {d:"11/05",w:"四",m:"Fika 咖啡文化",a:"NK / 文青購物",e:"自由夜晚",stay:"ibis Styles Stockholm Odenplan",note:"慢生活",
+   p:[["NK Stockholm","Hamngatan 18-20, 111 47 Stockholm"]]},
+  {d:"11/06",w:"五",m:"自由散步",a:"café hopping / 博物館，順便洗衣服",e:"收行李",stay:"ibis Styles Stockholm Odenplan",note:"彈性日",tip:"洗衣：飯店沒有洗衣機，到市區自助洗衣店，洗加烘約 1 到 1.5 小時，可以邊等邊在咖啡廳坐。去之前在地圖上看營業時間與付款方式，帶好信用卡和一些零錢。",
+   p:[["自助洗衣店（Odenplan 附近搜尋）","在 Google Maps 查營業時間與評價",LAUNDRY_STO]]}
+  ]},
+ {id:"home",name:"回程",c:"--fly",s:"--fly-soft",range:"11/07 – 11/08",
+  days:[
+  {d:"11/07",w:"六",m:"早餐 / 最後採買",a:"前往 ARN 機場",e:"18:00 起飛返台",stay:"機上",note:"回程",
+   p:[["Stockholm Arlanda Airport (ARN)","190 45 Stockholm-Arlanda"]]},
+  {d:"11/08",w:"日",m:"抵達台灣",note:"行程結束"}
+  ]}
+];
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const chips=document.getElementById("chips"), root=document.getElementById("stops");
+
+function addChip(id,label,small,cvar){
+  const b=document.createElement("button");
+  b.className="chip"; b.type="button"; b.style.setProperty("--c",`var(${cvar})`);
+  b.innerHTML=`<i></i>${esc(label)}${small?`<small>${esc(small)}</small>`:""}`;
+  b.addEventListener("click",()=>document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"}));
+  chips.appendChild(b);
+}
+addChip("prep","行前準備","","--accent");
+
+STOPS.forEach(st=>{
+  addChip(st.id,st.name,st.range.split(" – ")[0],st.c);
+  const sec=document.createElement("section");
+  sec.className="stop"; sec.id=st.id;
+  sec.style.setProperty("--c",`var(${st.c})`); sec.style.setProperty("--c-soft",`var(${st.s})`);
+  const stayLink=n=>`<a href="${MAP(n)}">${esc(n)}</a>`;
+  let booked=false;
+  const days=st.days.map(x=>{
+    const showBook=!!BOOK[st.id]&&!!x.stay&&x.stay!=="機上"&&x.stay!=="郵輪"&&!booked;
+    if(showBook)booked=true;
+    const slots=[["早上",x.m],["下午",x.a],["晚上",x.e]].filter(p=>p[1]).map(p=>`<div class="slot"><dt>${p[0]}</dt><dd>${esc(p[1])}</dd></div>`).join("");
+    const places=x.p?`<ul class="places">${x.p.map(p=>`<li><a href="${MAP(p[2]||(p[0].replace(/（.*?）/g,"")+" "+p[1]))}">${esc(p[0])}</a><span>${esc(p[1])}</span></li>`).join("")}</ul>`:"";
+    const stayHtml=x.stay?(x.stay==="機上"||x.stay==="郵輪"?esc(x.stay):stayLink(x.stay)):"";
+    return `<article class="day">
+      <div class="date"><span class="md">${esc(x.d)}</span><span class="wd">週${esc(x.w)}</span></div>
+      <div class="body">
+        <div class="tag">${esc(x.note)}</div>
+        <dl class="slots">${slots}</dl>
+        ${x.tip?`<div class="tip">${esc(x.tip)}</div>`:""}
+        ${places}
+        ${x.stay?`<div class="lodge"><span>住宿</span><b>${stayHtml}</b>${showBook?`<span>·</span><a href="${BOOK[st.id]}">訂單連結</a>`:""}</div>`:""}
+      </div></article>`;
+  }).join("");
+  const info=st.info?`<dl class="info">${(st.stay?[["住宿",null]]:[]).concat(st.info).map(r=>r[1]===null?`<div><dt>住宿</dt><dd><b><a href="${MAP(st.stay)}">${esc(st.stay)}</a></b>${BOOK[st.id]?` · <a href="${BOOK[st.id]}">訂單連結</a>`:""}</dd></div>`:`<div><dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd></div>`).join("")}</dl>`:"";
+  sec.innerHTML=`<div class="stop-head"><h2>${esc(st.name)}</h2><span class="range">${esc(st.range)}</span>${info}</div><div class="days">${days}</div>`;
+  root.appendChild(sec);
+});
+
+/* checklist, remembered per browser */
+let saved={};
+try{saved=JSON.parse(localStorage.getItem("nordic-prep-v1")||"{}")||{}}catch(e){saved={}}
+const groups=document.getElementById("groups"), prog=document.getElementById("prog");
+let total=0;
+PREP.forEach((g,gi)=>{
+  const box=document.createElement("div"); box.className="group";
+  box.innerHTML=`<h3>${esc(g.t)}</h3>`+g.items.map((it,ii)=>{
+    total++; const id=`p${gi}_${ii}`;
+    return `<label class="check"><input type="checkbox" id="${id}" ${saved[id]?"checked":""}><div><b>${esc(it[0])}</b><small>${esc(it[1])}</small></div></label>`;
+  }).join("");
+  groups.appendChild(box);
+});
+function refresh(){
+  const n=groups.querySelectorAll("input:checked").length;
+  prog.textContent=`已完成 ${n} / ${total}`;
+}
+groups.addEventListener("change",e=>{
+  saved[e.target.id]=e.target.checked;
+  try{localStorage.setItem("nordic-prep-v1",JSON.stringify(saved))}catch(err){}
+  refresh();
+});
+refresh();
+
+/* countdown to 10/23 departure (Taipei) */
+(function(){
+  const now=new Date(), t=new Date(2026,9,23);
+  const days=Math.ceil((t-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/86400000);
+  document.getElementById("cd").textContent=days>0?days:(days===0?"今天":"已");
+})();
+</script>
+
+</body></html>
